@@ -2,7 +2,7 @@
   <div class="logo" />
   <a-menu theme="dark" mode="inline">
     <div v-for="item in routerMap[1].children" :key="item.path">
-      <template v-if="item.meta && item.meta.disable">
+      <template v-if="item.meta && item.meta.hidden">
         <template v-if="!item.children">
           <a-menu-item :key="item.path">
             <router-link :to="item.path"> {{ item.meta.title }}</router-link>
@@ -14,11 +14,13 @@
               <span> {{ item.meta.title }}</span>
             </template>
             <div v-for="children in item.children" :key="children.path">
-              <a-menu-item :key="children.path">
-                <router-link :to="children.path">{{
-                  children.meta.title
-                }}</router-link>
-              </a-menu-item>
+              <template  v-if="children.meta && children.meta.hidden">
+                <a-menu-item :key="children.path">
+                  <router-link :to="children.path">{{
+                    children.meta.title
+                  }}</router-link>
+                </a-menu-item>
+              </template>
             </div>
           </a-sub-menu>
         </template>
