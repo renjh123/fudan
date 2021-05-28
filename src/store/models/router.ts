@@ -1,11 +1,11 @@
 const router: any = {
     state: {
-        // RouterMap: []
+        RouterMap: []
     },
     mutations: {
-        // SET_ROUTERMAP(state: any, options: any) {
-        //     state.RouterMap = options
-        // }
+        SET_ROUTERMAP(state: any, options: any) {
+            state.RouterMap = options
+        }
     },
     actions: {
     },

@@ -36,7 +36,9 @@ import { useStore } from "vuex";
 export default defineComponent({
   setup() {
     const router = useRouter();
-    const routerMap = computed(() => router.options.routes);
+    const store = useStore();
+    const routerMap = store.state.router.RouterMap;
+    // console.log(routerMap);
     const selectedKeys = ref([]);
     return {
       routerMap,

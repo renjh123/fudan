@@ -2,8 +2,9 @@ import router from '@/router/index'
 import store from '@/store/index'
 import asyncRouterJson from '@/router/asyncRouterJson'
 import constantRouter from '@/router/constantRouter'
-
+import { GetRouer } from '@/server/db_public'
 import Layout from '@/layout/index.vue'
+
 
 router.beforeEach((to, from, next) => {
     // 如果当前页面在登陆页面就放行
@@ -11,10 +12,18 @@ router.beforeEach((to, from, next) => {
         next();
     } else {
         // @ts-ignore
+        console.log(typeof store.state.user.loginState)
+        // @ts-ignore
         if (store.state.user.loginState) {
-
-            next();
-
+            // @ts-ignore
+            addDynamicRoutes()
+            // if(store.state.user.isRefresh){
+            //     addDynamicRoutes()
+            //     next({ ...to, replace: true });
+            // }else {
+            //     next()
+            // }
+            next()
         } else {
             // 不在登陆页面并且未登录    则跳转到登陆页面
             next({ path: '/login' });
@@ -44,12 +53,16 @@ function getDynamicRoutes(routerMap) {
 }
 
 function addDynamicRoutes() {
-    const addRouteMap = getDynamicRoutes(asyncRouterJson)
-    const routerMap = constantRouter.concat(addRouteMap)
-    addRouteMap.forEach(item => {
-        router.addRoute(item)
+    // @ts-ignore
+    GetRouer().then(response => {
+        // @ts-ignore
+        const addRouteMap = getDynamicRoutes(response.data)
+        const routerMap = constantRouter.concat(addRouteMap)
+        store.commit("SET_ROUTERMAP", routerMap)
+        store.commit("SET_REFRESH", false)
+        addRouteMap.forEach(item => {
+            router.addRoute(item)
+        })
     })
-    router.options.routes = routerMap
 }
-console.log('111111111111')
-addDynamicRoutes()
+
