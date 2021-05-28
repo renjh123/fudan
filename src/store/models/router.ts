@@ -1,12 +1,11 @@
-const Router: any = {
+const router: any = {
     state: {
-        RouterMap: []
+        // RouterMap: []
     },
     mutations: {
-        SET_ROUTERMAP(state: any, options: any) {
-            state.RouterMap = []
-            state.RouterMap = options
-        }
+        // SET_ROUTERMAP(state: any, options: any) {
+        //     state.RouterMap = options
+        // }
     },
     actions: {
     },
@@ -14,4 +13,4 @@ const Router: any = {
     }
 }
 
-export default Router
+export default router

@@ -1,12 +1,16 @@
 <template>
- 首页
+{{routerMap}}
 </template>
 <script lang="ts">
-import { defineComponent } from 'vue'
-
+import { defineComponent,computed } from "vue";
+import {useRouter} from 'vue-router'
 export default defineComponent({
   setup() {
-    return {};
+    const router = useRouter();
+    const routerMap = computed(() => router.options.routes);
+    return {
+      routerMap
+    };
   },
 });
 </script>

@@ -4,26 +4,26 @@ const asyncRouterJson = [
     {
         path: '/consoleDesk/UserManagement',
         name: 'UserManagement',
-        component: 'LayoutPage',
-        meta: { title: '控制台', disable: true },
+        component: 'Layout',
+        meta: { title: '控制台', hidden: true },
         children: [
             {
                 path: '/consoleDesk/UserManagement',
                 name: 'UserManagement',
                 component: "consoleDesk/UserManagement",
-                meta: { title: '用户管理', disable: true },
+                meta: { title: '用户管理', hidden: true },
             },
             {
                 path: '/consoleDesk/MenuManagement',
                 name: 'MenuManagement',
                 component: "consoleDesk/MenuManagement",
-                meta: { title: '菜单管理', disable: true },
+                meta: { title: '菜单管理', hidden: true },
             },
             {
                 path: '/consoleDesk/AuthorityManagement',
                 name: 'AuthorityManagement',
                 component: "consoleDesk/AuthorityManagement",
-                meta: { title: '权限管理', disable: true },
+                meta: { title: '权限管理', hidden: true },
             },
         ]
     },

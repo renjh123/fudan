@@ -1,12 +1,21 @@
 
 
-const User: any = {
+const user: any = {
     state: {
-        loginState: localStorage.getItem("loginState") ? localStorage.getItem("loginState") : '',
+        loginState: null,
+        userInfo: {
+            username: '',
+            password: '',
+        }
     },
     mutations: {
-        SET_LOINGSTATE(state: any) {
-            localStorage.setItem("loginState", "true")
+        SET_LOINGSTATE(state, options) {
+            state.loginState = options
+        },
+        SET_USERINFO(state, options) {
+            console.log(options)
+            state.userInfo.username = options.username
+            state.userInfo.password = options.password
         }
     },
     actions: {
@@ -15,4 +24,4 @@ const User: any = {
     }
 }
 
-export default User
+export default user

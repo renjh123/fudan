@@ -1,7 +1,7 @@
 <template>
   <div class="logo" />
   <a-menu theme="dark" mode="inline">
-    <div v-for="item in routerMap[1].children" :key="item.path">
+    <div v-for="item in routerMap" :key="item.path">
       <template v-if="item.meta && item.meta.hidden">
         <template v-if="!item.children">
           <a-menu-item :key="item.path">
@@ -14,7 +14,7 @@
               <span> {{ item.meta.title }}</span>
             </template>
             <div v-for="children in item.children" :key="children.path">
-              <template  v-if="children.meta && children.meta.hidden">
+              <template v-if="children.meta && children.meta.hidden">
                 <a-menu-item :key="children.path">
                   <router-link :to="children.path">{{
                     children.meta.title
@@ -29,18 +29,15 @@
   </a-menu>
 </template>
 <script lang="ts">
-import { defineComponent, ref, computed, reactive, toRefs } from "vue";
+import { defineComponent, ref, computed } from "vue";
 
 import { useRouter } from "vue-router";
+import { useStore } from "vuex";
 export default defineComponent({
   setup() {
-    console.log("----------------");
     const router = useRouter();
-    console.log(router.options.routes);
-    console.log("----------------");
     const routerMap = computed(() => router.options.routes);
     const selectedKeys = ref([]);
-
     return {
       routerMap,
       selectedKeys,

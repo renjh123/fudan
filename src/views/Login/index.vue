@@ -79,8 +79,8 @@ export default defineComponent({
       formRef.value
         .validate()
         .then(() => {
-          store.commit("SET_LOINGSTATE");
-          console.log(store);
+          store.commit("SET_LOINGSTATE", true);
+          store.commit("SET_USERINFO", formState);
           notification.open({
             message: "登录成功",
             description: "",
