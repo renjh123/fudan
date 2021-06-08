@@ -26,7 +26,7 @@
           </a-input-password>
         </a-form-item>
         <a-form-item>
-          <a-button type="primary" size="small" @click="onSubmit" style="width: 100%"
+          <a-button type="primary"  @click="onSubmit" style="width: 100%"
             >登录</a-button
           >
         </a-form-item>
