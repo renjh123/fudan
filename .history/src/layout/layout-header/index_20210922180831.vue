@@ -17,6 +17,12 @@
             <a-menu-item>
               <a href="javascript:;" @click="logout">退出登录</a>
             </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">修改密码</a>
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">个人信息</a>
+            </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>

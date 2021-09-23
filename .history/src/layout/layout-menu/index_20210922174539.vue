@@ -1,4 +1,5 @@
 <template>
+  <div class="logo" />
   <a-menu theme="dark" mode="inline">
     <div v-for="item in routerMap" :key="item.path">
       <template v-if="item.meta && item.meta.hidden">
@@ -37,6 +38,7 @@ export default defineComponent({
     const router = useRouter();
     const store = useStore();
     const routerMap = store.state.router.RouterMap;
+    // console.log(routerMap);
     const selectedKeys = ref([]);
     return {
       routerMap,

@@ -1,12 +1,12 @@
 <template>
   <a-layout>
-    <a-layout-header style="background: #fff; padding: 0">
-      <LayoutHeader></LayoutHeader>
-    </a-layout-header>
-    <a-layout>
     <a-layout-sider>
       <LayoutMenu></LayoutMenu>
     </a-layout-sider>
+    <a-layout>
+      <a-layout-header style="background: #fff; padding: 0">
+        <LayoutHeader></LayoutHeader>
+      </a-layout-header>
       <a-layout-content
         :style="{
           margin: '24px 16px',

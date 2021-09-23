@@ -4,7 +4,7 @@
       <LayoutHeader></LayoutHeader>
     </a-layout-header>
     <a-layout>
-    <a-layout-sider>
+        <a-layout-sider>
       <LayoutMenu></LayoutMenu>
     </a-layout-sider>
       <a-layout-content

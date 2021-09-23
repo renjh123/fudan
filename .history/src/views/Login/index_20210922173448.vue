@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="form">
-      <p class="login-title">用户登录</p>
       <a-form
         ref="formRef"
         :model="formState"
@@ -10,7 +9,7 @@
         :wrapper-col="wrapperCol"
       >
         <a-form-item name="username">
-          <a-input v-model:value="formState.username" placeholder="admin" size="large">
+          <a-input v-model:value="formState.username" placeholder="admin">
             <template #prefix>
               <user-outlined type="user" />
             </template>
@@ -20,7 +19,6 @@
           <a-input-password
             v-model:value="formState.password"
             placeholder="123456"
-            size="large"
           >
             <template #prefix>
               <KeyOutlined />
@@ -28,7 +26,9 @@
           </a-input-password>
         </a-form-item>
         <a-form-item>
-          <a-button type="primary"  @click="onSubmit" style="width: 100%"  size="large">登录</a-button>
+          <a-button type="primary"  @click="onSubmit" style="width: 100%"
+            >登录</a-button
+          >
         </a-form-item>
       </a-form>
     </div>
@@ -63,7 +63,7 @@ export default defineComponent({
       username: [
         {
           required: true,
-          message: "请输入用户名",
+          message: "请输入",
           trigger: "change",
         },
       ],
@@ -119,13 +119,6 @@ export default defineComponent({
     width: 400px;
     height: 400px;
     margin-top: 200px;
-  }
-  .login-title{
-    color: #fff;
-    text-align: center;
-    padding-bottom: 20px;
-    font-size: 24px;
-
   }
 }
 </style>

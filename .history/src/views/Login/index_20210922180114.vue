@@ -1,4 +1,5 @@
 <template>
+  <a-layout-header></a-layout-header>
   <div class="container">
     <div class="form">
       <p class="login-title">用户登录</p>

@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <div class="form">
-      <p class="login-title">用户登录</p>
       <a-form
         ref="formRef"
         :model="formState"
@@ -28,7 +27,9 @@
           </a-input-password>
         </a-form-item>
         <a-form-item>
-          <a-button type="primary"  @click="onSubmit" style="width: 100%"  size="large">登录</a-button>
+          <a-button type="primary"  @click="onSubmit" style="width: 100%"
+            >登录</a-button
+          >
         </a-form-item>
       </a-form>
     </div>
@@ -119,13 +120,6 @@ export default defineComponent({
     width: 400px;
     height: 400px;
     margin-top: 200px;
-  }
-  .login-title{
-    color: #fff;
-    text-align: center;
-    padding-bottom: 20px;
-    font-size: 24px;
-
   }
 }
 </style>

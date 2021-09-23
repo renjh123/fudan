@@ -3,7 +3,7 @@
     <a-layout-header style="background: #fff; padding: 0">
       <LayoutHeader></LayoutHeader>
     </a-layout-header>
-    <a-layout>
+  <a-layout>
     <a-layout-sider>
       <LayoutMenu></LayoutMenu>
     </a-layout-sider>

@@ -63,7 +63,7 @@ export default defineComponent({
       username: [
         {
           required: true,
-          message: "请输入用户名",
+          message: "请输入用户名222",
           trigger: "change",
         },
       ],

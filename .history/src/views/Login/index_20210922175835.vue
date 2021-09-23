@@ -120,7 +120,7 @@ export default defineComponent({
     height: 400px;
     margin-top: 200px;
   }
-  .login-title{
+  .title{
     color: #fff;
     text-align: center;
     padding-bottom: 20px;

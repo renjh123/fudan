@@ -37,6 +37,7 @@ export default defineComponent({
     const router = useRouter();
     const store = useStore();
     const routerMap = store.state.router.RouterMap;
+    // console.log(routerMap);
     const selectedKeys = ref([]);
     return {
       routerMap,

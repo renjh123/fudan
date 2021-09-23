@@ -17,6 +17,12 @@
             <a-menu-item>
               <a href="javascript:;" @click="logout">退出登录</a>
             </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">修改密码</a>
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">个人信息</a>
+            </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
@@ -58,13 +64,9 @@ export default defineComponent({
   padding: 0 30px;
   background: #3479e8;
 }
-.logo{
-  height: 54px;
-}
 .title{
   font-size: 18px;
   color: #fff;
-  margin: 0 0 0 30px;
 }
 .df{
   display: flex;
@@ -74,8 +76,5 @@ export default defineComponent({
 }
 .j-space-between{
   justify-content: space-between;
-}
-.ant-dropdown-link{
-  color: #fff;
 }
 </style>

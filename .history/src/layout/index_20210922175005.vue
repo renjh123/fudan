@@ -1,6 +1,8 @@
 <template>
   <a-layout>
     <a-layout-header style="background: #fff; padding: 0">
+      <div></div>
+      <p>应用健康度评估系统</p>
       <LayoutHeader></LayoutHeader>
     </a-layout-header>
     <a-layout>

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="form">
-      <p class="login-title">用户登录</p>
+      <p class="title">用户登录</p>
       <a-form
         ref="formRef"
         :model="formState"
@@ -120,12 +120,11 @@ export default defineComponent({
     height: 400px;
     margin-top: 200px;
   }
-  .login-title{
+  .title{
     color: #fff;
     text-align: center;
     padding-bottom: 20px;
     font-size: 24px;
-
   }
 }
 </style>

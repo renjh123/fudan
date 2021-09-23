@@ -1,10 +1,7 @@
 <template>
   <div class="header">
-    <div class="df a-center">
-      <img src="https://www.fudan.edu.cn/_upload/site/00/02/2/logo.png" class="logo"/>
-      <p class="title">应用健康度评估系统</p>
-    </div>
-    <div class="df a-center">
+    <div>应用健康度评估系统</div>
+    <div>
       <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
       &nbsp;&nbsp;
       <a-dropdown>
@@ -17,10 +14,17 @@
             <a-menu-item>
               <a href="javascript:;" @click="logout">退出登录</a>
             </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">修改密码</a>
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">个人信息</a>
+            </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>
     </div>
+   
   </div>
 </template>
 <script lang="ts">
@@ -54,28 +58,7 @@ export default defineComponent({
 .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 0 30px;
-  background: #3479e8;
-}
-.logo{
-  height: 54px;
-}
-.title{
-  font-size: 18px;
-  color: #fff;
-  margin: 0 0 0 30px;
-}
-.df{
-  display: flex;
-}
-.a-center{
-  align-items: center;
-}
-.j-space-between{
-  justify-content: space-between;
-}
-.ant-dropdown-link{
-  color: #fff;
 }
 </style>

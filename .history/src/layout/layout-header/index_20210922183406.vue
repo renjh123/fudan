@@ -2,7 +2,7 @@
   <div class="header">
     <div class="df a-center">
       <img src="https://www.fudan.edu.cn/_upload/site/00/02/2/logo.png" class="logo"/>
-      <p class="title">应用健康度评估系统</p>
+      <p class="title">312312应用健康度评估系统</p>
     </div>
     <div class="df a-center">
       <a-avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>
@@ -16,6 +16,12 @@
           <a-menu>
             <a-menu-item>
               <a href="javascript:;" @click="logout">退出登录</a>
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">修改密码</a>
+            </a-menu-item>
+            <a-menu-item>
+              <a href="javascript:;">个人信息</a>
             </a-menu-item>
           </a-menu>
         </template>

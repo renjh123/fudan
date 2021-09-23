@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <a-slider-header></a-slider-header>
     <div class="form">
       <p class="login-title">用户登录</p>
       <a-form
