@@ -1,6 +1,5 @@
 <template>
-  131312
-  <a-divider />
+{{routerMap}}
 </template>
 <script lang="ts">
 import { defineComponent,computed } from "vue";

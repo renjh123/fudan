@@ -1,6 +1,6 @@
 <template>
   131312
-  <a-divider />
+  <nz-divider></nz-divider>
 </template>
 <script lang="ts">
 import { defineComponent,computed } from "vue";
