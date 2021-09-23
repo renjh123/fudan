@@ -2,11 +2,12 @@
   <div>
     <div class="df a-center j-space-between">
       <p class="dashboard-title">应用健康度Dashboard</p>
-      <div>
+      <div class="df a-center">
+        <ReloadOutlined/>
         <a-select
           ref="select"
           v-model:value="value1"
-          style="width: 120px"
+          style="width: 120px;margin-left: 10px;"
           @focus="focus"
           @change="handleChange"
         >
@@ -51,6 +52,7 @@
   import { defineComponent,computed } from "vue";
   import {useRouter} from 'vue-router';
   import Pie from '@/components/charts/pie.vue';
+  import { ReloadOutlined } from '@ant-design/icons-vue';
   export default defineComponent({
     setup() {
       const router = useRouter();
@@ -80,7 +82,7 @@
       }
     },
     components: {
-      Pie
+      Pie, ReloadOutlined
     }
   });
 </script>
