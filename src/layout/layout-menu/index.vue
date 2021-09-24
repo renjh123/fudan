@@ -1,5 +1,4 @@
 <template>
-  <div class="logo" />
   <a-menu theme="dark" mode="inline">
     <div v-for="item in routerMap" :key="item.path">
       <template v-if="item.meta && item.meta.hidden">
