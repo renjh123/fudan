@@ -4,3 +4,6 @@
 .ant-menu-dark, .ant-menu-dark .ant-menu-sub{
     background: #3479e8 !important;
 }
+.sliderData .ant-form-item-control-wrapper{
+    width: 60%;
+}

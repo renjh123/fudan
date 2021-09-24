@@ -42,5 +42,21 @@ const constantRouter= [
           },
       ]
   },
+  {
+    path: '/assessment',
+    name: 'assess',
+    component: Layout,
+    meta: { title: '应用健康度评估', hidden: true, alwaysShow:false },
+   
+    children: [
+      {
+          path: '/assessment/list',
+          name: 'list',
+          component: () => import('@/views/assessment/list.vue'),
+          meta: { title: '应用健康度评估', hidden: true, alwaysShow:false, },
+
+      },
+  ]
+  }
   ]
   export default constantRouter
