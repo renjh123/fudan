@@ -66,8 +66,8 @@ const constantRouter= [
    
     children: [
       {
-          path: '/assessment/list',
-          name: 'list',
+          path: '/applicationmanage/list',
+          name: 'listapp',
           component: () => import('@/views/applicationManage/list.vue'),
           meta: { title: '应用系统管理', hidden: true, alwaysShow:false, },
 

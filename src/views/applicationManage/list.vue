@@ -10,33 +10,23 @@
 .addAssets {
   margin-left: 10px;
 }
-.footDataAll {
-  width: 100%;
-  text-align: center;
-  margin-top: 30px;
-  font-size: 26px;
-  em {
-    color: green;
-    font-style: normal;
-  }
-}
+
 </style>
 <template>
-  <div class="assessHeader">
-    <a-select
-      v-model:value="value1"
-      :size="size"
-      style="width: 200px"
-      :options="options"
-    ></a-select>
-  </div>
-  <a-table :columns="columns" :data-source="data" bordered :pagination="false">
+  <a-tabs v-model:activeKey="activeKey">
+    <a-tab-pane key="1" tab="严重">Content of Tab Pane 1</a-tab-pane>
+    <a-tab-pane key="2" tab="警戒" force-render>Content of Tab Pane 2</a-tab-pane>
+    <a-tab-pane key="3" tab="正常">Content of Tab Pane 3</a-tab-pane>
+  </a-tabs>
+
+ 
+  <a-table :columns="columns" :data-source="data" bordered >
     <template #name="{ text }">
       <a>{{ text }}</a>
     </template>
     <template #title>
       <div class="tableHeaderConfig">
-        <div>评估指标列表</div>
+        <div>应用系统列表</div>
 
         <div>
           <a-input-search
@@ -52,10 +42,10 @@
       </div>
     </template>
     <template #operation="{text}">
-       <a @click="getApmWeight(text)">编辑APM权重</a>
+       <a @click="getApmWeight(text)">编辑</a> ｜  <a @click="getApmWeight(text)">删除</a>
     </template>
   </a-table> 
-  <div class="footDataAll"><span>总权重：20 % </span><span>健康得分：<em>19.4</em></span></div>
+  
   <div class="addFrom">
         <a-modal
           title="添加评估指标"
@@ -77,19 +67,7 @@
               </a-select>
             </a-form-item>
           </p>
-          <p style="display:flex">
-            <div>
-            <a-form-item label="指标名称" v-for='item in indicatorsList'>
-              <a-select placeholder="指标名称" style="width: 200px" @onChange="getIndicators"
-                 v-model:value="value"
-                  label-in-value
-                  :options="optionsIndicatorsName"
-                  @change="getIndicatorsName" >
-              </a-select>
-            </a-form-item>
-              </div>
-            <span style="margin-left:10px;margin-top:8px"><a @click="getAddindicators">创建</a></span>
-          </p>
+          
           <p>
             <a-form-item label="指标数据：">
               <a-input v-model:value="indicatorsData" />
@@ -123,52 +101,43 @@ import { SelectTypes } from "ant-design-vue/es/select";
 import { useRouter } from "vue-router";
 const columns = [
   {
-    title: "评估指标",
+    title: "应用名称",
     dataIndex: "name",
     // slots: { customRender: "name" },
   },
   {
-    title: "指标数据",
+    title: "应用ID",
     className: "column-money",
     dataIndex: "money",
   },
   {
-    title: "得分",
-    dataIndex: "address",
-  },
-  {
-    title: "权重",
-    dataIndex: "address",
-  },
-  {
-    title: "健康得分",
+    title: "主机ID",
     dataIndex: "address",
   },
   {
     title: "操作",
     dataIndex: "operation",
-    slots: { customRender: "operation" },
-  },
+  }
 ];
 
 const data = [
   {
     key: "1",
-    name: "John Brown",
-    money: "￥300,000.00",
-    address: "New York No. 1 Lake Park",
+    name: "响应时间",
+    money: "整数",
+    address: "ms",
   },
   {
     key: "2",
-    name: "Jim Green",
-    money: "￥1,256,000.00",
-    address: "London No. 1 Lake Park",
+    name: "APDEX",
+    money: "浮点",
+    address: "",
   },
   {
     key: "3",
-    name: "Joe Black",
-    money: "￥120,000.00",
-    address: "Sidney No. 1 Lake Park",
+    name: "错误率",
+    money: "整数",
+    address: "%",
   },
 ];
 export default defineComponent({
@@ -241,6 +210,7 @@ export default defineComponent({
       console.log(e);
     };
     return {
+        activeKey: ref('1'),
       formatter,
       optionsIndicators,
       optionsIndicatorsName,
