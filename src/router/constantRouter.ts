@@ -25,54 +25,43 @@ const constantRouter= [
         disable: false,
       }
     },
-    {
-      path: '/',
-      name: 'dashboard',
-      component: Layout,
-      redirect: '/dashboard/analysis',
-      meta: { title: '首页', hidden: true },
-      children: [
-          // 首页
-          {
-              path: '/dashboard/analysis',
-              name: 'analysis',
-              component: () => import('@/views/dashboard/analysis.vue'),
-              meta: { title: '首页', hidden: true },
+  //   {
+  //     path: '/',
+  //     name: 'dashboard',
+  //     component: Layout,
+  //     redirect: '/dashboard/analysis',
+  //     meta: { title: '首页', hidden: true },
+  //     children: [
+  //         // 首页
+  //         {
+  //             path: '/dashboard/analysis',
+  //             name: 'analysis',
+  //             component: () => import('@/views/dashboard/analysis.vue'),
+  //             meta: { title: '首页', hidden: true },
 
-          },
-      ]
-  },
+  //         },
+  //     ]
+  // },
+ 
+
   {
-    path: '/assessment',
-    name: 'assess',
     component: Layout,
-    meta: { title: '应用健康度评估', hidden: true, alwaysShow:false },
-   
+    path: '/',
+    redirect: '/dashboard/analysis',
     children: [
-      {
-          path: '/assessment/list',
-          name: 'list',
+        {
+          path: '/dashboard/analysis',
+          name: 'analysis',
+          component: () => import('@/views/dashboard/analysis.vue'),
+          meta: { title: '首页', hidden: true }
+        },
+        {
+          path: '/assessment',
+          name: 'assess',
+          meta: { title: '应用健康度评估', hidden: true, alwaysShow:false },
           component: () => import('@/views/assessment/list.vue'),
-          meta: { title: '应用健康度评估', hidden: true, alwaysShow:false, },
-
-      },
-  ]
-  },
-  {
-    path: '/applicationmanage',
-    name: 'application',
-    component: Layout,
-    meta: { title: '应用系统管理', hidden: true, alwaysShow:false },
-   
-    children: [
-      {
-          path: '/applicationmanage/list',
-          name: 'listapp',
-          component: () => import('@/views/applicationManage/list.vue'),
-          meta: { title: '应用系统管理', hidden: true, alwaysShow:false, },
-
-      },
-  ]
-  }
+        }
+    ]
+},
   ]
   export default constantRouter
