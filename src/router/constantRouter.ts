@@ -47,22 +47,27 @@ const constantRouter= [
   {
     component: Layout,
     path: '/',
-    redirect: '/dashboard/analysis',
+    redirect: '/dashboard',
     children: [
         {
-          path: '/dashboard/analysis',
-          name: 'analysis',
-          component: () => import('@/views/dashboard/analysis.vue'),
+          path: '/dashboard',
+          name: 'dashboard',
+          component: () => import('@/views/dashboard/index.vue'),
           meta: { title: '首页', hidden: true }
         },
         {
           path: '/assessment',
-          name: 'assess',
+          name: 'assetment',
           meta: { title: '应用健康度评估', hidden: true, alwaysShow:false },
           component: () => import('@/views/assessment/list.vue'),
-        }, {
+        },{
+          path: '/indexManage',
+          name: 'indexManage',
+          meta: { title: '评估指标管理', hidden: true, alwaysShow:false },
+          component: () => import('@/views/indexManage/index.vue'),
+        },{
           path: '/applicationManage',
-          name: 'application',
+          name: 'applicationManage',
           meta: { title: '应用系统管理', hidden: true, alwaysShow:false },
           component: () => import('@/views/applicationManage/list.vue'),
         }

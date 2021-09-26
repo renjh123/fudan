@@ -1,6 +1,5 @@
 import router from '@/router/index'
 import store from '@/store/index'
-import asyncRouterJson from '@/router/asyncRouterJson'
 import constantRouter from '@/router/constantRouter'
 import { GetRouer } from '@/server/db_public'
 import Layout from '@/layout/index.vue'

@@ -3,7 +3,7 @@
     <div v-for="item in menuList" :key="item.path">
       <template v-if="!item.children">
         <a-menu-item :key="item.path">
-          <router-link :to="item.path"> {{ item.name }}</router-link>
+          <router-link :to="item.path"> {{ item.title }}</router-link>
         </a-menu-item>
       </template>
       <template v-else>
@@ -41,15 +41,16 @@ export default defineComponent({
       routerMap,
       selectedKeys,
       menuList: [{
-        name: '首页',
-        title: '首页',
-        path: '/dashboard/analysis'
+        title: 'Dashboard',
+        path: '/dashboard'
       },{
         name: '应用健康度评估',
         title: '应用健康度评估',
         path: '/assessment'
       },{
-        name: '应用系统管理',
+        title: '评估指标管理',
+        path: '/indexManage'
+      },{
         title: '应用系统管理',
         path: '/applicationManage'
       }]
