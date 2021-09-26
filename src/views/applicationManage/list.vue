@@ -14,13 +14,79 @@
 </style>
 <template>
   <a-tabs v-model:activeKey="activeKey">
-    <a-tab-pane key="1" tab="严重">Content of Tab Pane 1</a-tab-pane>
-    <a-tab-pane key="2" tab="警戒" force-render>Content of Tab Pane 2</a-tab-pane>
-    <a-tab-pane key="3" tab="正常">Content of Tab Pane 3</a-tab-pane>
-  </a-tabs>
+      <a-tab-pane key="0" tab="应用列表">
 
- 
-  <a-table :columns="columns" :data-source="data" bordered >
+       <a-table :columns="columns" :data-source="data" bordered >
+    <template #name="{ text }">
+      <a>{{ text }}</a>
+    </template>
+    <template #title>
+      <div class="tableHeaderConfig">
+        <div>应用系统列表</div>
+
+        <div>
+          <a-input-search
+            v-model:value="value"
+            placeholder="input search text"
+            style="width: 200px"
+            @search="onSearch"
+          />
+          <a-button type="primary" class="addAssets" @click="getApmWeight('add')"
+            >新建</a-button
+          >
+        </div>
+      </div>
+    </template>
+    <template #operation="{record}">
+       <a @click="getApmWeight(record)">编辑</a> ｜  <a-popconfirm
+    title="Are you sure 删除 this task?"
+    ok-text="Yes"
+    cancel-text="No"
+    @confirm="confirm"
+    @cancel="cancel"
+  >
+    <a @click="deletelist(record)">删除</a>
+  </a-popconfirm>
+    </template>
+  </a-table> 
+    </a-tab-pane>
+    <a-tab-pane key="1" tab="严重">
+
+       <a-table :columns="columns" :data-source="data" bordered >
+    <template #name="{ text }">
+      <a>{{ text }}</a>
+    </template>
+    <template #title>
+      <div class="tableHeaderConfig">
+        <div>应用系统列表</div>
+
+        <div>
+          <a-input-search
+            v-model:value="value"
+            placeholder="input search text"
+            style="width: 200px"
+            @search="onSearch"
+          />
+          <a-button type="primary" class="addAssets" @click="getApmWeight('add')"
+            >新建</a-button
+          >
+        </div>
+      </div>
+    </template>
+    <template #operation="{record}">
+       <a @click="getApmWeight(record)">编辑</a> ｜  <a-popconfirm
+    title="Are you sure 删除 this task?"
+    ok-text="Yes"
+    cancel-text="No"
+    @confirm="confirm"
+    @cancel="cancel"
+  >
+    <a @click="deletelist(record)">删除</a>
+  </a-popconfirm>
+    </template>
+  </a-table> 
+    </a-tab-pane>
+    <a-tab-pane key="2" tab="警戒" force-render> <a-table :columns="columns" :data-source="data" bordered >
     <template #name="{ text }">
       <a>{{ text }}</a>
     </template>
@@ -41,55 +107,68 @@
         </div>
       </div>
     </template>
-    <template #operation="{text}">
-       <a @click="getApmWeight(text)">编辑</a> ｜  <a @click="getApmWeight(text)">删除</a>
+    <template #operation="{record}">
+       <a @click="getApmWeight(record)">编辑</a> ｜  <a-popconfirm
+    title="Are you sure 删除 this task?"
+    ok-text="Yes"
+    cancel-text="No"
+    @confirm="confirm"
+    @cancel="cancel"
+  >
+    <a @click="deletelist(record)">删除</a>
+  </a-popconfirm>
     </template>
-  </a-table> 
-  
-  <div class="addFrom">
-        <a-modal
-          title="添加评估指标"
-          v-model:visible="visible"
-          :confirm-loading="confirmLoading"
-          @ok="handleOk"
-        >
-          <p>
-            <a-form-item label="指标对象">
-              <a-select placeholder="指标对象"
-               style="width: 200px"
-               @onChange="getIndicators"
-                 v-model:value="value"
-                  label-in-value
-                  :options="optionsIndicators"
-                  @change="getIndicators"
-               >
-               
-              </a-select>
-            </a-form-item>
-          </p>
-          
-          <p>
-            <a-form-item label="指标数据：">
-              <a-input v-model:value="indicatorsData" />
-            </a-form-item>
-          </p>
-          <p class="sliderData">
-            <a-form-item label="权重：" style="width:100%">
-             <div ><a-slider :tip-formatter="formatter" :max="80" @change="getsliderData"/></div> 
-            </a-form-item>
-          </p>
-          <!-- <p>
-            <a-form-item label="指标对象">
-              <a-input v-model:value="formState.name" />
-            </a-form-item>
-          </p> -->
-        </a-modal>
-   </div>
+  </a-table> </a-tab-pane>
+    <a-tab-pane key="3" tab="正常"> <a-table :columns="columns" :data-source="data" bordered >
+    <template #name="{ text }">
+      <a>{{ text }}</a>
+    </template>
+    <template #title>
+      <div class="tableHeaderConfig">
+        <div>应用系统列表</div>
+
+        <div>
+          <a-input-search
+            v-model:value="value"
+            placeholder="input search text"
+            style="width: 200px"
+            @search="onSearch"
+          />
+          <a-button type="primary" class="addAssets" @click="showModal"
+            >添加评估指标</a-button
+          >
+        </div>
+      </div>
+    </template>
+    <template #operation="{record}">
+       <a @click="getApmWeight(record)">编辑</a> ｜  <a-popconfirm
+    title="Are you sure 删除 this task?"
+    ok-text="Yes"
+    cancel-text="No"
+    @confirm="confirm"
+    @cancel="cancel"
+  >
+    <a @click="deletelist(record)">删除</a>
+  </a-popconfirm>
+    </template>
+  </a-table> </a-tab-pane>
+  </a-tabs>
+
    <div class="updateFrom">
-     <a-modal v-model:visible="visibleWeight" title="APM权重定义" @ok="handleOk">
+     <a-modal v-model:visible="visibleWeight" title="应用系统定义" @ok="handleOk">
          <p class="sliderData">
-            <a-form-item label="权重：" style="width:100%">
-             <div ><a-slider :tip-formatter="formatter" :max="80" @change="getsliderData"/></div> 
+            <a-form-item label="应用名称：" style="width:100%">
+               <a-input v-model:value="indicatorsData" />
+            </a-form-item>
+          </p>
+           <p class="sliderData">
+            <a-form-item label="应用ID：" style="width:100%">
+               <a-input v-model:value="indicatorsData" />
+            </a-form-item>
+          </p>
+           <p class="sliderData">
+            <a-form-item label="主机ID：" style="width:100%">
+               <a-input v-model:value="indicatorsData" />
             </a-form-item>
           </p>
     </a-modal>
@@ -117,6 +196,7 @@ const columns = [
   {
     title: "操作",
     dataIndex: "operation",
+     slots: { customRender: "operation" },
   }
 ];
 
@@ -196,11 +276,24 @@ export default defineComponent({
     const getsliderData = (e) => {
       console.log(e);
     };
-    //编辑APM权重
+    //新建
     const getApmWeight = (item) => {
-      console.log(item);
+      console.log(item)
+    if(item=='add'){ //新建数据
+
+    }else{ //更新数据
+
+    }
       visibleWeight.value = true;
     };
+//删除数据按钮
+   const deletelist= (e) => {
+     console.log(e)
+   }
+   //确定删除
+   const confirm=()=>{
+     console.log('删除选中数据')
+   }
     //指标对象
     const getIndicators = (e) => {
       console.log(e);
@@ -210,9 +303,11 @@ export default defineComponent({
       console.log(e);
     };
     return {
-        activeKey: ref('1'),
+        activeKey: ref('0'),
+        confirm,
       formatter,
       optionsIndicators,
+      deletelist,
       optionsIndicatorsName,
       visible,
       getIndicators,

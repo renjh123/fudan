@@ -41,13 +41,17 @@ export default defineComponent({
       routerMap,
       selectedKeys,
       menuList: [{
-        name: 'dashboard',
+        name: '首页',
         title: '首页',
         path: '/dashboard/analysis'
       },{
-        name: 'assess',
+        name: '应用健康度评估',
         title: '应用健康度评估',
         path: '/assessment'
+      },{
+        name: '应用系统管理',
+        title: '应用系统管理',
+        path: '/applicationManage'
       }]
     };
   },

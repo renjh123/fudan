@@ -135,6 +135,24 @@ const columns = [
   {
     title: "得分",
     dataIndex: "address",
+customRender: ({ text, index }) => {
+          const obj = {
+            children: text,
+            props: {} as any,
+          };
+          if (index === 2) {
+            obj.props.rowSpan = 2;
+          }
+          // These two are merged into above cell
+          if (index === 3) {
+            obj.props.rowSpan = 0;
+          }
+          if (index === 4) {
+            obj.props.colSpan = 0;
+          }
+          return obj;
+        },
+      
   },
   {
     title: "权重",

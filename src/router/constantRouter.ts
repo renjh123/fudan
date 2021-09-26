@@ -60,6 +60,11 @@ const constantRouter= [
           name: 'assess',
           meta: { title: '应用健康度评估', hidden: true, alwaysShow:false },
           component: () => import('@/views/assessment/list.vue'),
+        }, {
+          path: '/applicationManage',
+          name: 'application',
+          meta: { title: '应用系统管理', hidden: true, alwaysShow:false },
+          component: () => import('@/views/applicationManage/list.vue'),
         }
     ]
 },
