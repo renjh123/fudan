@@ -9,17 +9,17 @@
       </span>
     </template>
   </a-table>
-  <a-modal v-model:visible="visible" title="评估指标定义" @ok="handleOk" cancelText="取消" okText="确定">
+    <a-modal v-model:visible="visible" title="评估指标定义" @ok="handleOk" cancelText="取消" okText="下一步">
     <a-steps :current="current">
       <a-step v-for="item in steps" :key="item.title" :title="item.title" />
     </a-steps>
-
-    <a-form :model="formState" :label-col="labelCol" :wrapper-col="wrapperCol">
+    <!-- 评估指标 -->
+    <a-form :model="formIndex" :label-col="labelCol" :wrapper-col="wrapperCol" v-if="current === 0">
       <a-form-item label="指标名称">
-        <a-input v-model:value="formState.name"/>
+        <a-input v-model:value="formIndex.name"  style="width: 400px;"/>
       </a-form-item>
       <a-form-item label="指标类型">
-        <a-select v-model:value="formState.type">
+        <a-select v-model:value="formIndex.type" style="width: 400px;">
           <a-select-option value="0">整数</a-select-option>
           <a-select-option value="1">浮点数</a-select-option>
           <a-select-option value="2">字符</a-select-option>
@@ -27,16 +27,33 @@
         </a-select>
       </a-form-item>
        <a-form-item label="数值范围" class="df">
-          <span><a-input v-model:value="formState.range1"/></span>
+          <a-input v-model:value="formIndex.range1"  style="width: 150px;"/>
+          -
+          <a-input v-model:value="formIndex.range2"  style="width: 150px;"/>
       </a-form-item>
        <a-form-item label="指标单位">
-        <a-input v-model:value="formState.unit" />
+        <a-input v-model:value="formIndex.unit"  style="width: 400px;"/>
       </a-form-item>
+    </a-form>
+    <!-- 得分规则 -->
+    <a-form :model="formRule" :label-col="labelCol" :wrapper-col="wrapperCol" v-if="current === 1">
+      <a-form-item label="当指标数据" class="df" v-for="(item, index) in indexList" :key="item">
+        <a-select v-model:value="formRule.type" style="width: 100px;">
+          <a-select-option :value="index" v-for="(item, index) in conditions" :key="item">{{ item.name }}</a-select-option>
+        </a-select>
+        -
+        <a-input v-model:value="formRule.indexData"  style="width: 100px;"/>
+        <span style="display: inline-block;margin: 0 4px;">得分:</span>
+        <a-input v-model:value="formRule.score"  style="width: 100px;margin-right: 4px;"/>
+        <span @click="deleteIndex(index)">删除</span>
+      </a-form-item>
+      <a-button type="primary" @click="addIndex">添加</a-button>
     </a-form>
   </a-modal>
 </template>
 <script lang="ts">
 import { defineComponent, ref, reactive, toRaw, UnwrapRef } from 'vue'
+
 const columns = [
   {
     title: '评估指标',
@@ -89,12 +106,54 @@ const data = [
   },
 ];
 
-interface FormState {
+
+const conditions = [{
+  name: "=",
+  id: 0
+},{
+  name: ">",
+  id: 1
+},{
+  name: ">=",
+  id: 2
+},{
+  name: "<",
+  id: 3
+},{
+  name: "<=",
+  id: 4
+},{
+  name: "in range",
+  id: 5
+},{
+  name: "每递增",
+  id: 6
+},{
+  name: "每递减",
+  id: 7
+},{
+  name: "偏离基线",
+  id: 8
+},{
+  name: "大于基线",
+  id: 9
+},{
+  name: "小于基线",
+  id: 10
+}]
+
+interface formIndex {
   name: string;
   type: string | undefined;
   range1: number;
   range2: number;
   unit: string | undefined;
+}
+
+interface formRule {
+  type: string | undefined;
+  indexData: number;
+  score: number;
 }
 
 export default defineComponent({
@@ -107,6 +166,15 @@ export default defineComponent({
         console.log('use value', searchValue);
         console.log('or use this.value', value.value);
       };
+      
+      // 步骤图
+      const current = ref<number>(0);
+      const next = () => {
+        current.value++;
+      };
+      const prev = () => {
+        current.value--;
+      };
 
       // 弹框
       const visible = ref<boolean>(false);
@@ -117,20 +185,13 @@ export default defineComponent({
 
       const handleOk = (e: MouseEvent) => {
         console.log(e);
-        visible.value = false;
+        current.value = 1;
+        // visible.value = false;
       };
 
-      // 步骤图
-      const current = ref<number>(0);
-      const next = () => {
-        current.value++;
-      };
-      const prev = () => {
-        current.value--;
-      };
       
-      // 表单
-      const formState: UnwrapRef<FormState> = reactive({
+      // 表单1
+      const formIndex: UnwrapRef<formIndex> = reactive({
         name: '',
         type: '0',
         range1: undefined,
@@ -138,14 +199,46 @@ export default defineComponent({
         unit: ''
       });
       const onSubmit = () => {
-        console.log('submit!', toRaw(formState));
+        console.log('submit!', toRaw(formIndex));
       };
 
+      // 表单2
+      const formRule: UnwrapRef<formRule> = reactive({
+        type: undefined,
+        indexData: undefined,
+        score: undefined,
+      });
+      
+      const indexList = ref<any>([2]);
+
+
+      // 添加指标
+      const addIndex = () => {
+        indexList.value.push(2);
+      };
+
+      // 删除指标
+      const deleteIndex = (i) => {
+        if(indexList.value.length > 1){
+          indexList.value.splice(i, 1);
+        }
+      };
+
+      // 编辑
+      const editForm = (i) => {
+        showModal();
+      };
+
+      // 删除
+      const deletelist= (e) => {
+        console.log(e)
+      }
       return {
         data,
         columns,
         value,
         visible,
+        conditions,
         onSearch,
         showModal,
         handleOk,
@@ -162,8 +255,14 @@ export default defineComponent({
         ],
         next,
         prev,
-        formState,
-        onSubmit
+        formIndex,
+        formRule,
+        indexList,
+        addIndex,
+        deleteIndex,
+        onSubmit,
+        editForm,
+        deletelist
       };
     }
 });
@@ -182,7 +281,7 @@ export default defineComponent({
 .steps-action {
   margin-top: 24px;
 }
-.ant-form-item{
-  margin-bottom: 6px !important;
+.ant-form-item:nth-child(1){
+  margin-top: 20px !important;
 }
 </style>
